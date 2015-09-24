@@ -1,8 +1,6 @@
 package rules;
 
 import javax.naming.InitialContext;
-import javax.naming.NameClassPair;
-import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 
 public class Container {
@@ -19,14 +17,8 @@ public class Container {
 
 	public boolean isInContainer() {
 
-		NamingEnumeration<NameClassPair> list;
 		try {
-			list = initialContext.list("/");
-			while (list.hasMoreElements()) {
-				NameClassPair nameClassPair = list.next();
-				if (!"TransactionManager".equals(nameClassPair.getName()))
-					return false;
-			}
+			initialContext.lookup("java:comp/BeanManager");
 		} catch (NamingException e) {
 			return false;
 		}
