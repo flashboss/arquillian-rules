@@ -19,7 +19,7 @@ public class RuleTest {
 	}
 
 	@Rule
-	public MyRule myRule = new MyRule(null);
+	public MyRule myRule = new MyRule(new Container());
 
 	@Test
 	public void ruleWithServerContainer() throws Exception {

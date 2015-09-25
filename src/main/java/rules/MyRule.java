@@ -15,8 +15,6 @@ public class MyRule implements TestRule {
 
 	public MyRule(Container container) {
 		this.container = container;
-		if (container == null)
-			this.container = new Container();
 	}
 
 	@Override
@@ -27,7 +25,6 @@ public class MyRule implements TestRule {
 				List<Throwable> errors = new ArrayList<Throwable>();
 
 				try {
-					Thread.currentThread().getContextClassLoader();
 					base.evaluate();
 					if (!isInContainer())
 						errors.add(new NotInContainerException());

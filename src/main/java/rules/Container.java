@@ -7,22 +7,20 @@ public class Container {
 
 	private InitialContext initialContext;
 
+	private boolean inContainer;
+
 	public Container() {
 		try {
 			initialContext = new InitialContext();
+			initialContext.lookup("java:comp/BeanManager");
+			inContainer = true;
 		} catch (NamingException e) {
-			e.printStackTrace();
+			inContainer = false;
 		}
 	}
 
 	public boolean isInContainer() {
-
-		try {
-			initialContext.lookup("java:comp/BeanManager");
-		} catch (NamingException e) {
-			return false;
-		}
-		return true;
+		return inContainer;
 	}
 
 }
