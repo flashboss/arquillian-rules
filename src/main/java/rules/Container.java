@@ -15,7 +15,7 @@ public class Container {
 			initialContext.lookup("java:comp/BeanManager");
 			inContainer = true;
 		} catch (NamingException e) {
-			inContainer = false;
+			throw new NotInContainerException();
 		}
 	}
 
